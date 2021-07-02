@@ -7,9 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javax.swing.JOptionPane;
 
-/*extends tersebut berfungsi untuk memanggil class frame dari package javax.swing
-ataumembuat class form antrian sebagai class turunan dari jframe
-*/
+
 public class FromAntrian extends javax.swing.JFrame {
     // membuat objek queue baru bernama antrian dengan linkedlist
     Queue<Object> antrian = new LinkedList<>();
@@ -23,7 +21,6 @@ public class FromAntrian extends javax.swing.JFrame {
         inisialisasi(); //untuk eksekusi perintah pada method inisialisasi
     }
     
-
  private void inisialisasi(){
      // membuat object cal dari class calendar
       Calendar cal = Calendar.getInstance();
@@ -32,59 +29,40 @@ public class FromAntrian extends javax.swing.JFrame {
     SimpleDateFormat s=new SimpleDateFormat("EEEE, dd-MMMM-yyyy HH:mm");
  //menginialisasi variabel tanggal dengan format s diatas
     String tgl = s.format(cal.getTime());
-        
-       
-        
+
         JlhAntrian.setText("0");
         TtlAntrian.setText("0");
         nopanggil.setText("-----");
         
-        txt1.setText(tgl);//menampilkan tanggal hari ini pada txt1
+        txt1.setText(tgl);
         txt2.setText("Nomor Antrian");
         txt3.setText("--------");
         txt4.setText("Silahkan menunggu");
         txt5.setText("--------");
     }
- //method untuk menambah antrian
+ 
  private void tambahAntrian(){
      Calendar cal = Calendar.getInstance();
      SimpleDateFormat s=new SimpleDateFormat("EEEE, dd-MMMM-yyyy HH:MM");
      String tgl = s.format(cal.getTime());
     
         nomor++; //increment variabel nomor
-        //menginialisasi variabel antr dengan kata antrian dan ditambah variabel nomor
+       
         String antr = "Antrian "+nomor;
-        /*menambahkan antrian dari variabel antr dan menggunakan algotitma 
-        linked list yaitu add untuk menambahkan data pada sebuah nilai variabel
-        */
-        antrian.add(antr);
+       antrian.add(antr);
         
-        //membuat sebuah variable dengan nama cvt dengan type data string
         String cvt = String.valueOf(antrian.size());
         //menampilkan banyak antrian pada jumlah antrian
         JlhAntrian.setText(cvt);
-        //mengsetext nopanggil dengan peek
-        /*peek berguna untuk mengetahui dan mengembalikan elemen yang ada paling 
-        depan dari antrian, tanpa mengeluarkannya dari antrian .
-        */
         nopanggil.setText(""+antrian.peek());
         //menampilkan total antrian yang terjadi
         TtlAntrian.setText(""+nomor);
-        /*
-        append salah satu method dari class StringBuffer yang fungsinya untuk 
-        menambahkan nilai pada variable antr, jadi nilai akan bertambah setiap 
-        ada penambahan data
-        */
         txtAntrian.append(antr + "\n");
         
         //menampilkan tanggal hari ini pada txt1
         txt1.setText(tgl);
         txt2.setText("Nomor Antrian");
         txt3.setText("  " + nomor);
-       /*
-        mengesettext pada jlabeltxt4 dengan silahkan menunggu ditambah cvt untuk
-        mengetahui jumlah antrian dan ditambah dengan kata antrian lagi
-        */
         txt4.setText("Silahkan menunggu " + cvt + " Antrian Lagi ");
         txt5.setText("Mohon untuk bersabar");
     }
@@ -94,17 +72,13 @@ public class FromAntrian extends javax.swing.JFrame {
         if(antrian.isEmpty()){
             JOptionPane.showMessageDialog(this, "Ambil Nomor antrian terlebih dahulu !");
         }
-       /*variable txtAntrian yang bernilai kosong karena antrian dalam bernilai
-        kosong sebelum di inputkan nilai untuk pertama kali tentunya */
        txtAntrian.setText("");
-       /* 
-       poll untuk mengatur banyaknya antrian yang dibuat sehingga dapat mengeksekusi 
-        hingga queue antrian yang paling akhir */
-        antrian.poll();
+      antrian.poll();
         //antrian tadi yang sudah diisi akan dilakukan looping dengan menggunakan forEach loop
         antrian.forEach((Object element) -> {
             //menambahkan data yang secara otomatis sebanyak nilai antrian yang 
-            //dimasukkan,dan agar dapat memproses antrian secara satupersatu (dengan menggunakan append (yaitu method dari class StringBuffer )
+            //dimasukkan,dan agar dapat memproses antrian secara satupersatu 
+         
             txtAntrian.append("" + element + "\n");
         });
         
